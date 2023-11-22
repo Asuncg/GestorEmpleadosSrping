@@ -1,8 +1,6 @@
 package es.gestorEmpleados.Gestor.service;
 
-import es.gestorEmpleados.Gestor.exceptions.AlumnoException;
 import es.gestorEmpleados.Gestor.exceptions.EmpleadoException;
-import es.gestorEmpleados.Gestor.model.Alumno;
 import es.gestorEmpleados.Gestor.model.Empleado;
 import es.gestorEmpleados.Gestor.repository.RepositorioEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +24,8 @@ public class ServicioEmpleadoImpl implements ServicioEmpleado {
     }
 
     @Override
-    public void crearEmpleado(Empleado empleado) {
-
+    public Empleado crearEmpleado(Empleado empleado) {
+            return repositorioEmpleado.save(empleado);
     }
 
     @Override

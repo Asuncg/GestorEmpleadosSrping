@@ -26,4 +26,6 @@ public class Empleado {
     public String nombre;
     public String dni;
     public Character sexo;
+    @OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL)
+    private Sueldo sueldo;
 }

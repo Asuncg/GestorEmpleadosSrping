@@ -20,6 +20,11 @@ public class EmpleadoController {
     public String mostrarPaginaInicio() {
         return "index";
     }
+
+    @GetMapping("/crear")
+    public String mostrarFormularioCrearEmpleado() {
+        return "crear";
+    }
     @GetMapping("/empleados")
     public String obtenerTodosLosEmpleados(Model model) {
         List<Empleado> empleados = this.servicioEmpleado.obtenerTodosLosEmpleados();
@@ -31,11 +36,13 @@ public class EmpleadoController {
         return this.servicioEmpleado.obtenerEmpleadoPorId(id);
     }
     @PostMapping("/empleados")
-    public void crearEmpleado(@RequestBody Empleado empleado) {
+    public String crearEmpleado(@ModelAttribute Empleado empleado) {
         this.servicioEmpleado.crearEmpleado(empleado);
+        return "redirect:/empleados";
     }
+
     @PutMapping("/empleados")
-    public void modificarEmpleado(@RequestBody Empleado empleado) {
+    public void modificarEmpleado(@ModelAttribute Empleado empleado) {
         this.servicioEmpleado.modificarEmpleado(empleado);
     }
     @DeleteMapping("/empleados/{id}")

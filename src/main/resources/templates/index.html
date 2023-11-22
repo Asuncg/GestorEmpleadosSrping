@@ -3,23 +3,15 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Mi Aplicación</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}">
 </head>
 <body>
-<header>
-    <!-- Aquí puedes poner elementos comunes del encabezado -->
-    <a th:href="@{/}">Inicio</a>
-    <a th:href="@{/empleados}">Ver Lista de Empleados</a>
-    <h1>Mi Aplicación</h1>
-</header>
+<th:block th:include="fragments/header :: header"></th:block>
 
 <div id="content">
     <h2>Bienvenido a mi gestor</h2>
 </div>
 
-<footer>
-    <!-- Aquí puedes poner elementos comunes del pie de página -->
-    <p>Derechos de autor © 2023</p>
-</footer>
+<th:block th:include="fragments/footer :: footer"></th:block>
 </body>
 </html>

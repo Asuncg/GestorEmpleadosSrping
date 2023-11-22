@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ServicioEmpleado {
     List<Empleado> obtenerTodosLosEmpleados();
-    void crearEmpleado(Empleado empleado);
+    Empleado crearEmpleado(Empleado empleado);
     void modificarEmpleado(Empleado empleado);
     void  eliminarEmpleado(int id);
 
