@@ -15,6 +15,7 @@ public class ServicioAlumnoImpl implements ServicioAlumno {
 
     @Autowired
     public ServicioAlumnoImpl(RepositorioAlumno repositorioAlumno) {
+
         this.repositorioAlumno = repositorioAlumno;
     }
 

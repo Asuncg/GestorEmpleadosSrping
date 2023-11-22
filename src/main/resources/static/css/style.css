@@ -1,0 +1,59 @@
+/* Reset de estilos para eliminar márgenes y rellenos predeterminados */
+body, h1, h2, table {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo general para el cuerpo de la página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8; /* Fondo blanco grisáceo */
+    color: #333; /* Color de texto principal */
+}
+
+/* Estilo del encabezado */
+header {
+    background-color: #3498db; /* Azul */
+    color: #fff; /* Texto blanco */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Estilo del contenido */
+#content {
+    background-color: #fff; /* Fondo blanco */
+    padding: 20px;
+    margin: 20px;
+}
+
+/* Estilo de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* Borde delgado gris */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db; /* Azul */
+    color: #fff; /* Texto blanco */
+}
+
+/* Estilo del pie de página */
+footer {
+    background-color: #3498db; /* Azul */
+    color: #fff; /* Texto blanco */
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
