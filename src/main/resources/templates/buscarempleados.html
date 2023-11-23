@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Buscar Empleados</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<th:block th:include="fragments/header :: header"></th:block>
+
+<div id="content">
+    <h2>Buscar Empleados</h2>
+
+    <form action="/buscar/dni" method="post">
+        <label for="dni">Buscar por DNI:</label>
+        <input type="text" id="dni" name="dni" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <form action="/buscar/nombre" method="post">
+        <label for="nombre">Buscar por Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+<th:block th:include="fragments/footer :: footer"></th:block>
+</body>
+</html>

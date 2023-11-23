@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Empleado no encontrado</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<th:block th:include="fragments/header :: header"></th:block>
+
+<div id="content">
+    <h2>Empleado no encontrado</h2>
+
+    <div>
+        <p>No se encontró ningún empleado con los criterios de búsqueda.</p>
+    </div>
+
+    <div>
+        <a th:href="@{/}" class="button">Volver</a>
+    </div>
+</div>
+
+<th:block th:include="fragments/footer :: footer"></th:block>
+</body>
+</html>

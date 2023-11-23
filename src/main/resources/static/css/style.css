@@ -24,6 +24,7 @@ header {
     background-color: #fff; /* Fondo blanco */
     padding: 20px;
     margin: 20px;
+    flex: 1;
 }
 
 /* Estilo de la tabla */

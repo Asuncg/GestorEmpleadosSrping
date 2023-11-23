@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Resultado de la búsqueda</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<th:block th:include="fragments/header :: header"></th:block>
+
+<div id="content">
+    <h2>Resultado de la búsqueda</h2>
+
+    <th:if test="${empleado != null}">
+        <div>
+            <p>Empleado encontrado:</p>
+            <p>Nombre: <span th:text="${empleado.nombre}"></span></p>
+            <p>DNI: <span th:text="${empleado.dni}"></span></p>
+            <!-- Agregar más detalles del empleado según tus necesidades -->
+
+            <div th:if="${empleado.alta == 1}">
+                <p>Estado: Activo</p>
+                <!-- Botón para modificar -->
+                <a th:href="@{/modificarEmpleado/{id}(id=${empleado.id})}" class="button">Modificar</a>
+            </div>
+
+            <div th:if="${empleado.alta == 0}">
+                <p>Estado: Inactivo</p>
+                <!-- Botón para reactivar -->
+                <a th:href="@{/reactivarEmpleado/{id}(id=${empleado.id})}" class="button">Reactivar</a>
+            </div>
+        </div>
+    </th:if>
+    </div>
+
+<th:block th:include="fragments/footer :: footer"></th:block>
+</body>
+</html>
