@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Modificar Empleado</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<h2>Modificar Empleado</h2>
+<form th:action="@{/guardarCambios}" th:object="${empleado}" method="post">
+  <input type="hidden" th:field="${empleado.id}"/>
+  <label>Nombre: <input type="text" th:field="${empleado.nombre}" required/></label><br>
+  <label>DNI: <input type="text" th:field="${empleado.dni}" required/></label><br>
+  <!-- Agrega los demás campos aquí -->
+
+  <button type="submit">Guardar Cambios</button>
+</form>
+</body>
+</html>

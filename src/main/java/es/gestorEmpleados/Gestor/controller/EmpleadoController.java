@@ -76,21 +76,41 @@ public class EmpleadoController {
     }
 
     @PostMapping("/buscar-sueldo")
-    public String buscarSueldoEmpleado(@RequestParam String dni, Model model) {
-        Sueldo sueldo = this.servicioEmpleado.obtenerSueldoPorDni(dni);
-        if (sueldo != null) {
-            model.addAttribute("empleado", sueldo.getEmpleado());
-            model.addAttribute("sueldo", sueldo);
+    public String buscarSueldoEmpleadoPorDni(@RequestParam String dni, Model model) {
+        Empleado empleado = this.servicioEmpleado.obtenerEmpleadoPorDni(dni);
+
+        if (empleado != null) {
+            Sueldo sueldo = new Sueldo();
+            double sueldoEmpleado = sueldo.calculaSueldo(empleado.getCategoria(), empleado.anyos);
+            model.addAttribute("sueldo", sueldoEmpleado);
+            model.addAttribute("empleado", empleado);
             return "sueldoempleado";
         } else {
-            return "empleadonoencontrado"; // Otra página de error si no se encuentra el sueldo
+            return "empleadonoencontrado";
         }
+    }
+
+    @GetMapping("/modificarEmpleado/{id}")
+    public String mostrarFormularioModificar(@PathVariable int id, Model model) {
+        Empleado empleado = this.servicioEmpleado.obtenerEmpleadoPorId(id);
+        model.addAttribute("empleado", empleado);
+        return "modificarEmpleado";
     }
 
     @PutMapping("/empleados")
     public void modificarEmpleado(@ModelAttribute Empleado empleado) {
         this.servicioEmpleado.modificarEmpleado(empleado);
     }
+
+    @PostMapping("/guardarCambios")
+    public String guardarCambios(@ModelAttribute Empleado empleado) {
+        // Validar que no haya DNI duplicados y campos no vacíos
+        // ...
+
+        this.servicioEmpleado.modificarEmpleado(empleado);
+        return "redirect:/empleados";
+    }
+
 
     @DeleteMapping("/empleados/{id}")
     public void eliminarEmpleado(@PathVariable int id) {

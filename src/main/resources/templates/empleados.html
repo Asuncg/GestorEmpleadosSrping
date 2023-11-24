@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Mi Aplicación</title>
-    <link rel="stylesheet" href="../static/css/style.css" >
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
 <th:block th:include="fragments/header :: header"></th:block>
@@ -10,22 +10,30 @@
     <h2>Lista de Empleados</h2>
     <table border="1">
         <tr>
-            <th>ID</th>
-            <th>Categoría</th>
-            <th>Años</th>
-            <th>Alta</th>
             <th>Nombre</th>
             <th>DNI</th>
             <th>Sexo</th>
+            <th>Categoría</th>
+            <th>Años</th>
+            <th>Estado</th>
+            <th>Acciones</th>
         </tr>
         <tr th:each="empleado : ${empleados}">
-            <td th:text="${empleado.id}"></td>
-            <td th:text="${empleado.categoria}"></td>
-            <td th:text="${empleado.anyos}"></td>
-            <td th:text="${empleado.alta}"></td>
             <td th:text="${empleado.nombre}"></td>
             <td th:text="${empleado.dni}"></td>
             <td th:text="${empleado.sexo}"></td>
+            <td th:text="${empleado.categoria}"></td>
+            <td th:text="${empleado.anyos}"></td>
+            <td>
+                <p th:if="${empleado.alta == 1}">Activo</p>
+                <p th:if="${empleado.alta == 0}">Inactivo</p>
+            </td>
+            <td>
+                <a th:if="${empleado.alta == 1}" th:href="@{/modificarEmpleado/{id}(id=${empleado.id})}" class="button modificar">Modificar</a>
+                <a th:if="${empleado.alta == 1}" th:href="@{/bajaempleado/{id}(id=${empleado.id})}" class="button baja">Dar de Baja</a>
+                <a th:if="${empleado.alta == 0}" th:href="@{/reactivarEmpleado/{id}(id=${empleado.id})}" class="button reactivar">Reactivar</a>
+            </td>
+
         </tr>
     </table>
 </div>

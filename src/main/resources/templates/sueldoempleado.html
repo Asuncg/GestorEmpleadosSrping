@@ -10,7 +10,7 @@
 
 <div id="content">
     <h2>Sueldo del Empleado</h2>
-    <p th:text="'El sueldo del empleado con DNI ' + ${empleado.dni} + ' es: ' + ${sueldo.sueldo}"></p>
+    <p th:text="'El sueldo del empleado ' + ${empleado.nombre} + ',con DNI ' + ${empleado.dni} + ' es: ' + ${sueldo}"></p>
 </div>
 
 <th:block th:include="fragments/footer :: footer"></th:block>

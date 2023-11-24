@@ -2,7 +2,6 @@ package es.gestorEmpleados.Gestor.service;
 
 import es.gestorEmpleados.Gestor.exceptions.EmpleadoException;
 import es.gestorEmpleados.Gestor.model.Empleado;
-import es.gestorEmpleados.Gestor.model.Sueldo;
 import es.gestorEmpleados.Gestor.repository.RepositorioEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,18 +26,21 @@ public class ServicioEmpleadoImpl implements ServicioEmpleado {
 
     @Override
     public Empleado crearEmpleado(Empleado empleado) {
-            return repositorioEmpleado.save(empleado);
+        return repositorioEmpleado.save(empleado);
     }
 
     @Override
     public void modificarEmpleado(Empleado empleado) {
+        validarCampos(empleado);
 
+        repositorioEmpleado.save(empleado);
     }
 
     @Override
     public void eliminarEmpleado(int id) {
 
     }
+
 
     @Override
     public Empleado obtenerEmpleadoPorDni(String dni) throws EmpleadoException {
@@ -52,9 +54,13 @@ public class ServicioEmpleadoImpl implements ServicioEmpleado {
     }
 
     @Override
-    public Sueldo obtenerSueldoPorDni(String dni) {
+    public Empleado obtenerEmpleadoPorId(int id) {
         return null;
     }
 
+    // Método para validar campos
+    private void validarCampos(Empleado empleado) {
+        // Implementa la lógica de validación aquí
+    }
 
 }
