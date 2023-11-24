@@ -4,16 +4,48 @@
   <meta charset="UTF-8"/>
   <title>Modificar Empleado</title>
   <link rel="stylesheet" href="../static/css/style.css">
+
 </head>
 <body>
-<h2>Modificar Empleado</h2>
-<form th:action="@{/guardarCambios}" th:object="${empleado}" method="post">
-  <input type="hidden" th:field="${empleado.id}"/>
-  <label>Nombre: <input type="text" th:field="${empleado.nombre}" required/></label><br>
-  <label>DNI: <input type="text" th:field="${empleado.dni}" required/></label><br>
-  <!-- Agrega los demás campos aquí -->
+<th:block th:include="fragments/header :: header"></th:block>
+<div id="content">
+<div class="form">
+  <h2>Modificar Empleado</h2>
+  <form th:action="@{/guardarCambios}" th:object="${empleado}" method="post">
+    <!-- Campo para el ID (puede ser invisible) -->
+    <input type="hidden" th:field="*{id}" />
 
-  <button type="submit">Guardar Cambios</button>
-</form>
+    <!-- Campos para otras propiedades del Empleado -->
+    <label th:for="${#ids.next('nombre')}" >Nombre:</label>
+    <input type="text" th:field="*{nombre}" required="required"/>
+    <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+    <br>
+
+    <label th:for="${#ids.next('dni')}" >DNI:</label>
+    <input type="text" th:field="*{dni}" minlength="9" maxlength="50" required="required"/>
+    <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
+    <br>
+
+    <label th:for="${#ids.next('Sexo')}" >Sexo:</label>
+    <input type="text" th:field="*{sexo}" minlength="1" maxlength="1" required="required"/>
+    <span th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></span>
+    <br>
+
+    <label th:for="${#ids.next('categoria')}" >Categoria:</label>
+    <input type="text" th:field="*{categoria}" minlength="1" maxlength="2" pattern="[0-9]+" required="required"/>
+    <span th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></span>
+    <br>
+
+    <label th:for="${#ids.next('anyos')}" >Años Trabajados:</label>
+    <input type="text" th:field="*{anyos}" required="required"/>
+    <span th:if="${#fields.hasErrors('anyos')}" th:errors="*{anyos}"></span>
+    <br>
+
+    <button type="submit">Guardar Cambios</button>
+  </form>
+</div>
+</div>
+<th:block th:include="fragments/footer :: footer"></th:block>
+
 </body>
 </html>

@@ -22,6 +22,7 @@ public class Empleado {
     public int id;
     private int categoria;
     public double anyos;
+    @Column(columnDefinition = "int default 1")
     private int alta;
     public String nombre;
     public String dni;

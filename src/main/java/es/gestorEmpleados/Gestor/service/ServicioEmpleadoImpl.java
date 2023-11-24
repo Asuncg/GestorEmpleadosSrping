@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -55,12 +56,38 @@ public class ServicioEmpleadoImpl implements ServicioEmpleado {
 
     @Override
     public Empleado obtenerEmpleadoPorId(int id) {
-        return null;
+        Optional<Empleado> optionalEmpleado = repositorioEmpleado.findById(id);
+
+        // Desempaqueta el Optional para obtener el Empleado
+        Empleado empleado = optionalEmpleado.orElse(null);
+
+        return empleado;
     }
 
     // Método para validar campos
     private void validarCampos(Empleado empleado) {
         // Implementa la lógica de validación aquí
     }
+
+    @Override
+    public void darDeBajaEmpleado(int id) {
+        Optional<Empleado> optionalEmpleado = repositorioEmpleado.findById(id);
+        if (optionalEmpleado.isPresent()) {
+            Empleado empleado = optionalEmpleado.get();
+            empleado.setAlta(0);
+            repositorioEmpleado.save(empleado);
+        }
+    }
+
+    @Override
+    public void reactivarEmpleado(int id) {
+        Optional<Empleado> optionalEmpleado = repositorioEmpleado.findById(id);
+        if (optionalEmpleado.isPresent()) {
+            Empleado empleado = optionalEmpleado.get();
+            empleado.setAlta(1);
+            repositorioEmpleado.save(empleado);
+        }
+    }
+
 
 }

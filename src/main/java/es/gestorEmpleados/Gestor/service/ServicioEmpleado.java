@@ -15,7 +15,12 @@ public interface ServicioEmpleado {
     void eliminarEmpleado(int id);
 
     Empleado obtenerEmpleadoPorDni(String dni) throws EmpleadoException;
+
     Empleado obtenerEmpleadoPorNombre(String nombre);
 
     Empleado obtenerEmpleadoPorId(int id);
+
+    void darDeBajaEmpleado(int id);
+
+    void reactivarEmpleado(int id);
 }

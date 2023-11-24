@@ -6,6 +6,7 @@ import es.gestorEmpleados.Gestor.service.ServicioEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,6 +47,18 @@ public class EmpleadoController {
         return "empleados";
     }
 
+    @GetMapping("/darDeBajaEmpleado/{id}")
+    public String darDeBajaEmpleado(@PathVariable int id) {
+        servicioEmpleado.darDeBajaEmpleado(id);
+        return "redirect:/empleados";
+    }
+
+    @GetMapping("/reactivarEmpleado/{id}")
+    public String reactivarEmpleado(@PathVariable int id) {
+        servicioEmpleado.reactivarEmpleado(id);
+        return "redirect:/empleados";
+    }
+
     @PostMapping("/empleados")
     public String crearEmpleado(@ModelAttribute Empleado empleado) {
         this.servicioEmpleado.crearEmpleado(empleado);
@@ -63,6 +76,14 @@ public class EmpleadoController {
         }
     }
 
+    @GetMapping("/modificarEmpleado/{id}")
+    public String mostrarFormularioModificar(@PathVariable int id, Model model) {
+        Empleado empleado = this.servicioEmpleado.obtenerEmpleadoPorId(id);
+        model.addAttribute("empleado", empleado);
+        return "modificarempleado";
+    }
+
+
     // Agregar método para procesar la búsqueda por Nombre
     @PostMapping("/buscar/nombre")
     public String buscarEmpleadoPorNombre(@RequestParam String nombre, Model model) {
@@ -71,7 +92,7 @@ public class EmpleadoController {
             model.addAttribute("empleado", empleado);
             return "resultadoBusqueda";
         } else {
-            return "resultadoBusqueda";
+            return "empleadonoencontrado";
         }
     }
 
@@ -90,12 +111,6 @@ public class EmpleadoController {
         }
     }
 
-    @GetMapping("/modificarEmpleado/{id}")
-    public String mostrarFormularioModificar(@PathVariable int id, Model model) {
-        Empleado empleado = this.servicioEmpleado.obtenerEmpleadoPorId(id);
-        model.addAttribute("empleado", empleado);
-        return "modificarEmpleado";
-    }
 
     @PutMapping("/empleados")
     public void modificarEmpleado(@ModelAttribute Empleado empleado) {
@@ -103,9 +118,14 @@ public class EmpleadoController {
     }
 
     @PostMapping("/guardarCambios")
-    public String guardarCambios(@ModelAttribute Empleado empleado) {
+    public String guardarCambios(@ModelAttribute Empleado empleado, BindingResult bindingResult) {
         // Validar que no haya DNI duplicados y campos no vacíos
         // ...
+
+        if (bindingResult.hasErrors()) {
+            // Manejar los errores, por ejemplo, redirigir a una página de error
+            return "error";
+        }
 
         this.servicioEmpleado.modificarEmpleado(empleado);
         return "redirect:/empleados";

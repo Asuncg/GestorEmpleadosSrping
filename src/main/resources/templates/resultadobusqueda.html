@@ -12,27 +12,37 @@
     <h2>Resultado de la búsqueda</h2>
 
     <th:if test="${empleado != null}">
-        <div>
             <p>Empleado encontrado:</p>
-            <p>Nombre: <span th:text="${empleado.nombre}"></span></p>
-            <p>DNI: <span th:text="${empleado.dni}"></span></p>
-            <!-- Agregar más detalles del empleado según tus necesidades -->
+            <table border="1">
+                <tr>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Sexo</th>
+                    <th>Categoría</th>
+                    <th>Años</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                <tr>
+                    <td th:text="${empleado.nombre}"></td>
+                    <td th:text="${empleado.dni}"></td>
+                    <td th:text="${empleado.sexo}"></td>
+                    <td th:text="${empleado.categoria}"></td>
+                    <td th:text="${empleado.anyos}"></td>
+                    <td>
+                        <p th:if="${empleado.alta == 1}">Activo</p>
+                        <p th:if="${empleado.alta == 0}">Inactivo</p>
+                    </td>
+                    <td>
+                        <a th:if="${empleado.alta == 1}" th:href="@{/modificarEmpleado/{id}(id=${empleado.id})}" class="button modificar">Modificar</a>
+                        <a th:if="${empleado.alta == 1}" th:href="@{/darDeBajaEmpleado/{id}(id=${empleado.id})}" class="button baja">Dar de Baja</a>
+                        <a th:if="${empleado.alta == 0}" th:href="@{/reactivarEmpleado/{id}(id=${empleado.id})}" class="button reactivar">Reactivar</a>
+                    </td>
 
-            <div th:if="${empleado.alta == 1}">
-                <p>Estado: Activo</p>
-                <!-- Botón para modificar -->
-                <a th:href="@{/modificarEmpleado/{id}(id=${empleado.id})}" class="button">Modificar</a>
-            </div>
-
-            <div th:if="${empleado.alta == 0}">
-                <p>Estado: Inactivo</p>
-                <!-- Botón para reactivar -->
-                <a th:href="@{/reactivarEmpleado/{id}(id=${empleado.id})}" class="button">Reactivar</a>
-            </div>
-        </div>
+                </tr>
+            </table>
     </th:if>
     </div>
-
 <th:block th:include="fragments/footer :: footer"></th:block>
 </body>
 </html>

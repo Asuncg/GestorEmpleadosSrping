@@ -192,8 +192,17 @@ footer {
     color: #fff;
 }
 
+.modificar:hover {
+    background-color: #2980b9;
+}
+
 .baja {
     background-color: #e74c3c;
+    color: #fff;
+}
+
+.baja:hover {
+    background-color: #d73625;
     color: #fff;
 }
 
@@ -202,6 +211,43 @@ footer {
     color: #fff;
 }
 
-.button:hover {
-    background-color: #2980b9;
+.reactivar:hover {
+    background-color: #229a55;
+    color: #fff;
+}
+
+
+
+/* Formularios */
+
+.form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 25%;
+    margin: auto;
+}
+
+h2, h3 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
 }
